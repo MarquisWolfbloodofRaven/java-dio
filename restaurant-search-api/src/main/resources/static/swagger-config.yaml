@@ -1,0 +1,40 @@
+openapi: 3.0.1
+info:
+  title: Restaurant Search API
+  description: API para busca de restaurantes baseado em cidade e tipo de comida.
+  version: 1.0.0
+paths:
+  /restaurants:
+    get:
+      summary: Busca restaurantes por cidade e tipo de comida
+      parameters:
+        - name: city
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: type
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Lista de restaurantes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Restaurant'
+components:
+  schemas:
+    Restaurant:
+      type: object
+      properties:
+        name:
+          type: string
+        address:
+          type: string
+        rating:
+          type: number
